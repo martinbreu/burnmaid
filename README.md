@@ -148,6 +148,8 @@ use Github Issues
 
 Re-Import tests!
 
+use wlan switcher
+
 paths->const in one place
 
 https://pkg.go.dev/text/template#hdr-Functions

@@ -2,8 +2,8 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ] #TODO: use below if public to only build on new tag
-    # tags:
+    branches: [ "main" ] 
+    # tags: #TODO: only build on new tag
     #   - '*'
 
 jobs:
@@ -35,6 +35,9 @@ jobs:
     #     cat test.result | grep "FAIL" > test.failed | true
     #     if [[ -s test.failed ]]; then cat test.failed;echo "";echo "";echo "ALL TEST OUTPUT:";echo "";cat test.result;false;fi
     #     echo "All Tests run sucessfully"
+    # - name: Download deps
+    #   working-directory: ${{env.working_directory}}
+    #   run: go mod download
     - name: Build
       working-directory: ${{env.working_directory}}
       run: GOOS=linux GOARCH=arm GOARM=6 go build .
