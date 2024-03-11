@@ -42,6 +42,7 @@ download(){
 
 install(){
     echo "enable systemd service burnmaid"
+    chmod +x $(pwd)/cmd/burnmaid
     bash -c 'echo "[Unit]
     Description=burnmaid
     [Service]
