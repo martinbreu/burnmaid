@@ -3,8 +3,8 @@ name: Go
 on:
   push:
     branches: [ "main" ] 
-    # tags: #TODO: only build on new tag
-    #   - '*'
+    tags:
+      - '*'
 
 jobs:
   release:

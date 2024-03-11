@@ -1,25 +1,19 @@
-use github action for binary
-
-rename old to burnmaid-private
-create new public repository
-
-test install script from beginning: erase current SD...
-
-
 # Burnmaid
-ceramic burner control using Raspberry Pi with temperatur sensor and radio-controlled socket.
+ceramic burner control website using Raspberry Pi with temperatur sensor (1350°C) and radio-controlled socket.
 
-![index](./doc/index.jpg)
-![settings](./doc/settings.jpg)
-![plot](./doc/plot.jpg)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-## Buy
-* [Converter analog-digital (MAX31855: 14 bit SPI, 0-1350°C)](https://www.reichelt.de/entwicklerboards-thermoelement-verstaerker-max31855-debo-amp-thermo-p235483.html?&trstct=pos_0&nbc=1)
-* [Temperatur Sensor type K](https://www.amazon.de/dp/B0C3GNB56N?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+![index](./doc/index.png)
+![settings](./doc/settings.png)
+![plot](./doc/plot.png)
 
+## Buy (~100€)
+* [Converter analog-digital (MAX31855: 14 bit SPI, 0-1350°C, a lot of trash on amazon!)](https://www.reichelt.de/entwicklerboards-thermoelement-verstaerker-max31855-debo-amp-thermo-p235483.html?&trstct=pos_0&nbc=1)
+* [Temperatur Sensor type K](https://www.amazon.de/dp/B0BSC1STZV/?coliid=I1B7OO64FFBF0X&colid=2LYV8PYIBVR7S&psc=1&ref_=cm_sw_r_cp_ud_lstpd_VNYYSENYQJAT8KG7MXGX)
+---
 * [Power Plugs (1000W max, 1200W tested)](https://www.amazon.de/gp/product/B001AX8QUM/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1)
-* [Power Plug Receiver/Tranceiver](https://www.amazon.de/gp/product/B071J2Z3YK/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
-
+* [Power Plug Receiver/Tranceiver](https://www.amazon.de/dp/B01H2D2RH6/?coliid=I1T77M596BFZTO&colid=2LYV8PYIBVR7S&psc=1&ref_=cm_sw_r_cp_ud_lstpd_ZGBM5ESFMSF05X6S5FNM)
+---
 * [Raspberry Pi Zero 2 W](https://www.amazon.de/Raspberry-Pi-Zero-2-W/dp/B09KLVX4RT/ref=sr_1_2?keywords=zero+2+w&qid=1704284508&sr=8-2)
 * [Raspberry Power Supply](https://www.amazon.de/Raspberry-Netzteil-Ladeger%C3%A4t-Netzschalter-Kompatibel/dp/B07G953WC3/ref=sr_1_4?keywords=netzteil+5v+3a+usb&qid=1704284890&sr=8-4)
 * [Raspberry SD](https://www.amazon.de/gp/product/B073K14CVB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
@@ -48,6 +42,10 @@ ceramic burner control using Raspberry Pi with temperatur sensor and radio-contr
 * "VCC" -> 5V
 * "GND" -> GND
 * "DATA" -> GPIO-27
+
+#### kiln/oven
+* plug in
+* If any regulator is installed, put on max or remove. Most kilns are provided with full power or no power, changing every few seconds.
 
 ## Install
 Simply execute this line on your raspbberry pi's home directory:
@@ -91,7 +89,6 @@ and open http://burnmaid:8080
 - Insert SD into Pi, power up, and ssh into Pi, replacing USERNAME and HOSTNAME:
 
       ssh USERNAME@HOSTNAME
-
 
 
 ## helpful developer commands / Troubleshoot
@@ -157,11 +154,9 @@ https://go.dev/play/p/DjWvXW9nVMH
 
 add sniffer and plugconfig to page, see plug.html
 
-use git clone to install, also in growmpage -> makes all easier
-add gitbackup on startup, not using systemd, in growmpage add backup to growcontroller
+use git clone to install, also in page -> makes all easier
+add gitbackup on startup, not using systemd
 
 add chromedp firefox test, just copy sources and compare
 
 create backup and write to a new sd
-
-index: fixed measured and wanted temp, fixed error message in red
