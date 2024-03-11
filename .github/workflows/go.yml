@@ -50,4 +50,4 @@ jobs:
         tag: ${{github.ref_name}}
         file_glob: true
         overwrite: true
-        body: "curl "https://raw.githubusercontent.com/martinbreu/burnmaid/main/INSTALL.sh" | sudo bash"
+        body: "curl 'https://raw.githubusercontent.com/martinbreu/burnmaid/main/INSTALL.sh' | sudo bash"
