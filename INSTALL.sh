@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# version="$1"
 main(){
     SCRIPTPATH=$(dirname $(readlink -f "$0"))
     cd $SCRIPTPATH
@@ -13,7 +12,7 @@ main(){
     deps
     download
     install
-    
+
     exit
 }
 
@@ -28,7 +27,7 @@ deps(){
 }
 
 download(){
-    #TODO: get latest?!, see page
+    version=$(curl -I https://github.com/martinbreu/burnmaid/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
     curl -L https://github.com/martinbreu/burnmaid/archive/refs/tags/${version}.zip --output ../burnmaid.zip
     curl -L https://github.com/martinbreu/burnmaid/releases/download/${version}/burnmaid --output ../cmd/burnmaid
     unzip -o ../burnmaid.zip -d ../
@@ -51,6 +50,7 @@ install(){
     systemctl daemon-reload
     systemctl enable burnmaid.service
     systemctl start burnmaid.service
+    systemctl status burnmaid.service
 }
 
 main
