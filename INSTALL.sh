@@ -3,11 +3,13 @@
 main(){
     SCRIPTPATH=$(dirname $(readlink -f "$0"))
     cd $SCRIPTPATH
-    
-    if [ ! -e burnmaid ]; then #TODO: and not allready in burnmaid
-        mkdir burnmaid
-        cd burnmaid
+    if [ "${PWD##*/}" = "burnmaid" ]; then
+        cd ..
     fi
+    if [ ! -e burnmaid ]; then
+        mkdir burnmaid
+    fi
+    cd burnmaid
     
     deps
     download
