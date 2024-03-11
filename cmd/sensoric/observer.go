@@ -2,6 +2,7 @@ package sensoric
 
 import (
 	"errors"
+	"fmt"
 	"math"
 	"os/exec"
 	"runtime"
@@ -34,6 +35,7 @@ func (g *Observer) MeasureTemperatur() (int, error) {
 	command := exec.Command("python3", filename_growobserver)
 	out, err := command.CombinedOutput()
 	if err != nil {
+		fmt.Println("python3 "+filename_growobserver+" could not be run, try manually!")
 		return failTemperatureToReturn, err
 	}
 	// fmt.Printf("string(out): %v\n", string(out))

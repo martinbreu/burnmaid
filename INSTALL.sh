@@ -24,7 +24,7 @@ deps(){
     echo "install dependencies..."
     apt update
     apt install -y python3-pip gnuplot
-    pip3 install rpi-rf RPi.GPIO
+    pip3 install rpi-rf RPi.GPIO Adafruit-GPIO
     raspi-config nonint do_i2c 0
     # python3 external/setup.py install #TODO: remove setup files
     # sudo iwconfig wlan0 power off
@@ -42,7 +42,9 @@ download(){
 
 install(){
     echo "enable systemd service burnmaid"
-    chmod +x $(pwd)/cmd/burnmaid
+    chmod +x ./cmd/burnmaid
+    chmod +x ./cmd/script/*.sh
+    chmod +x ./cmd/script/*.py
     bash -c 'echo "[Unit]
     Description=burnmaid
     [Service]
