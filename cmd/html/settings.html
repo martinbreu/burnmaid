@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Burnmaid - Settings</title>
+    <style>
+        html {
+            display: table;
+            margin: auto;
+            text-align: center;
+        }
+
+        table {
+            border: 1px solid white;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 0.5px solid white;
+        }
+
+        input {
+            text-align: center;
+        }
+        button:hover {
+            background-color: #3e8e41
+        }
+
+        button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+    </style>
+</head>
+
+<body style="background-color: #222;">
+    <a href="/" style="display: flex;justify-content: center;align-items: center;margin: inherit;color: bisque;">
+        <img src="logo" width="34px" height="34px">
+        <div style="font-size: 30px;">Burnmaid</div><br><br>
+    </a>
+
+    <div style="color: white;border: 1px solid white;overflow-x: auto;">
+        <p style="overflow: visible;">{{.LastUpdateInfo}}</p>
+
+        <!-- TODO: use flexbox and divs instead of table everywhere!!! + set id's to structure and for css file external-->
+        <form name="form" method="POST" action="/update">
+            <input type="text" hidden name="selectTriggered" value="false" id="selectTriggered">
+            <br>
+            <div style="display: flex;flex-direction: column;">
+                <select name="select" style="font-size: large;text-align-last: center;background-color: antiquewhite;"
+                    onchange="document.getElementById('selectTriggered').value='true';document.forms['form'].submit();">
+                    <!-- <option selected value="">#insert</option> -->
+                    {{$selected := .Selected}}
+                    {{range $index, $brand := .BrandList}}
+                    <option value="{{$index}}" {{if eq $index $selected }} selected {{end}}>{{$brand.Name}}</option>
+                    {{end}}
+                </select>
+                <br>
+                <div>
+                    <!-- <p>Startzeit</p> -->
+                    <input id="Start" name="Start" value="{{.Start}}" type="datetime-local">
+                    <button
+                        onclick="now = new Date();now.setHours(now.getHours()+1);document.getElementById('Start').value = now.toISOString().substring(0 , 16);return false">jetzt</button>
+                </div>
+                <br>
+                <button onclick="if(!confirm('Programm speichern und starten?')){return false}"
+                    type="submit">SPEICHERN</button>
+            </div>
+            <br><br>
+
+            <div style="border: 1px solid white;margin: 5px;">
+
+                {{range $index, $phase := .Phases}}
+                <br>
+                <div style="border: 1px solid white;display: flex;flex-direction: row;align-items: center;">
+
+                    <p>Phase {{ len (printf "a%*s" $index "") }}</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>°C Anfang: </td>
+                                <td><input style="width: 80px;" name="TemperatureToStart" value="{{$phase.TemperatureToStart}}" type="number"
+                                        max="1349" min="-10"></td>
+                            </tr>
+                            <tr>
+                                <td>°C pro Stunde: </td>
+                                <td><input style="width: 80px;" name="CelciusPerHour" value="{{$phase.CelciusPerHour}}" type="number"
+                                        max="500" min="0">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>HalteMinuten: </td>
+                                <td><input style="width: 80px;" name="MinutesToHold" value="{{$phase.MinutesToHold}}" type="number" max="600"
+                                        min="0">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>°C Ende: </td>
+                                <td><input style="width: 80px;" name="TemperatureToReach" value="{{$phase.TemperatureToReach}}" type="number"
+                                        max="1349" min="-10"></td>
+                            </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+                {{end}}
+                <br>
+                <button onclick="if(!confirm('delete phase?')){return false}" name="deletePhase" value="true" type="submit"
+                    style="margin-right: 10px;">delete last phase</button>
+                <button onclick="if(!confirm('add phase?')){return false}" name="addPhase" value="true" type="submit">add
+                    new
+                    phase</button>
+                <br>
+            </div>
+            <br>
+            <div style="display: ruby;">
+                <p>Name:</p>
+                <input name="Name" value="{{.Name}}" type="text" size="12">
+                <button style="margin-right: 10px;" onclick="if(!confirm('Das komplette, oben ausgewählte Programm löschen?')){return false}"
+                name="delete" value="true" type="submit">löschen</button>
+            </div>
+        </form>
+
+
+    </div>
+</body>
+
+</html>

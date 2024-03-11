@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- <meta http-equiv="refresh" content="60" /> -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Burnmaid - Plot</title>
+    <style>
+        html {
+            display: table;
+            margin: auto;
+            text-align: center;
+        }
+        button:hover {
+            background-color: #3e8e41
+        }
+
+        button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+    </style>
+</head>
+
+<body style="background-color: #222;">
+    <a href="/" style="display: flex;justify-content: center;align-items: center;margin: inherit;color: bisque;">
+        <img src="logo" width="34px" height="34px">
+        <div style="font-size: 30px;">Burnmaid</div><br><br>
+    </a>
+    <div style="color: white;border: 1px solid white;overflow-x: auto;">
+        <!-- <button onclick="window.location.href = '/'">Back</button> -->
+        <!-- <hr> --><br>
+        <form method="POST" action="/plot">
+            From
+            <br>
+            <input name="from" type="datetime-local" value="{{.From}}">
+            <br><br>
+            To
+            <br>
+            <input name="to" type="datetime-local" value="{{.To}}">
+            <br>
+            <button style="width: 80%;margin-top:10px;margin-bottom:10px" type="submit">update</button>
+
+        </form>
+
+        <a href="plot.png"><img src="plot.png" alt="plotting..." width="200px" height="150px"></a>
+    </div>
+</body>
+
+</html>

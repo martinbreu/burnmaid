@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="3" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Burnmaid</title>
+    <style>
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        table {
+            border: 0.5px solid white;
+        }
+
+        tr {
+            border: 2px solid white;
+        }
+
+        td {
+            border: 0.5px solid white;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        button:hover {
+            background-color: #3e8e41
+        }
+
+        button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        #container_default {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            border: 1px solid white;
+            overflow-x: auto;
+        }
+
+        #container {
+            display: flex;
+            white-space: nowrap;
+            flex-direction: column;
+            background-color: #18191f;
+            color: #fff;
+            padding: 10px;
+            animation: animate 3s;
+        }
+
+        @keyframes animate {
+            from {
+                filter: hue-rotate(0deg);
+            }
+
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<!-- TODO: use list? or flex -->
+
+<body style="background-color: #222;">
+    <a href="/" style="display: flex;justify-content: center;align-items: center;margin: inherit;color: bisque;">
+        <img src="logo" width="34px" height="34px">
+        <div style="font-size: 30px;">Burnmaid</div><br><br>
+    </a>
+    <div id="{{if .Running }}container{{else}}container_default{{end}}">
+        <button type="button"
+            onclick="window.location.href = '/settings'">Settings</button>
+        <button type="button" onclick="window.location.href = '/plot'">Plot Burning
+            Curve</button>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Sensor</td>
+                    <td>
+                        <h2><strong style="color:darkcyan;">{{.Measured}}°C</strong></h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Heizung</td>
+                    <td>{{if .Ofen }} volle Pulle {{else}} aus {{end}} {{if gt .WantDiff 0 }} | +{{.WantDiff}} {{else}}
+                        {{if gt .WantDiff -2000 }} | {{.WantDiff}} {{end}} {{end}}</td>
+                </tr>
+                <tr style="white-space: normal;">
+                    <td colspan="2" style="color: red;">{{if ne .ErrorCounter 0 }} (count
+                        {{.ErrorCounter}}) {{end}} {{.Error}}</td>
+                </tr>
+                <tr>
+                    <td>Programm</td>
+                    <td>{{.Name}}</td>
+                </tr>
+                <tr>
+                    <td>Phase</td>
+                    <td><h4>{{.Info}}</h4></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>Start</td>
+                    <td>{{.Start}}</td>
+                </tr>
+                <tr>
+                    <td>Ende</td>
+                    <td>{{.End}}</td>
+                </tr>
+                <tr>
+                    <td>Kalt~</td>
+                    <td>{{.CoolEnd}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- <script>
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 3000);
+    </script> -->
+</body>
+
+</html>

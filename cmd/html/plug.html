@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Burnmaid</title>
+    <style>
+       html {
+            display: table;
+            margin: auto;
+            text-align: center;
+        }
+
+        body {
+            border: 1px solid #222;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div><button onclick="window.location.href = '/'">Back</button>
+        <hr><select onchange="document.getElementById('config').value = this.value">
+            <option selected value="">copy configuration from database</option>
+        </select>
+        <form method="POST" action="/plug"><textarea id="config" style="height: 200px;width: 350px;font-size: large;"
+                name="json"></textarea>
+            test on
+            test off
+            calibrate on -> sniff, reload with saved config
+            calibrate off -> sniff, reload with saved config
+            save
+            <hr>
+            <div><button style='margin-left: 10px;' type="submit">Save</button></div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ] #TODO: use below if public to only build on new tag
+    # tags:
+    #   - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    env:
+      working_directory: ./cmd
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version-file: cmd/go.mod
+        cache-dependency-path: cmd/go.sum
+    # - name: Test
+    #   working-directory: ${{env.working_directory}}
+    #   run: | #cd cmd;set -e
+    #     set -e
+    #     if [[ -f test.files ]];then rm test.files;fi
+    #     if [[ -f test.result ]];then rm test.result;fi
+    #     if [[ -f test.failed ]];then rm test.failed;fi
+    #     find . -maxdepth 1 -type d -exec go test -c {} \;
+    #     find . -maxdepth 1 -type f -name "*.test" > test.files
+    #     if [[ ! -s test.files ]]; then echo "no test files under /cmd" & false; fi
+    #     echo "Build all tests sucessfully, now executing..."
+    #     while read t; do $t >> test.result | true;done < test.files 
+    #     while read t; do rm $t;done < test.files
+    #     cat test.result | grep "FAIL" > test.failed | true
+    #     if [[ -s test.failed ]]; then cat test.failed;echo "";echo "";echo "ALL TEST OUTPUT:";echo "";cat test.result;false;fi
+    #     echo "All Tests run sucessfully"
+    - name: Build
+      working-directory: ${{env.working_directory}}
+      run: GOOS=linux GOARCH=arm GOARM=6 go build .
+    - name: Release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        file: ./cmd/growmpage
+        asset_name: growmpage
+        tag: ${{github.ref_name}}
+        file_glob: true
+        overwrite: true
+        body: "Extract 'Source code (zip)' and run ./burnmaid/INSTALL.sh"
