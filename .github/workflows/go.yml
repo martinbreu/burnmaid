@@ -45,9 +45,9 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        file: ./cmd/growmpage
-        asset_name: growmpage
+        file: ./cmd/burnmaid
+        asset_name: burnmaid
         tag: ${{github.ref_name}}
         file_glob: true
         overwrite: true
-        body: "Extract 'Source code (zip)' and run ./burnmaid/INSTALL.sh"
+        body: "curl "https://raw.githubusercontent.com/martinbreu/burnmaid/main/INSTALL.sh" | sudo bash"
