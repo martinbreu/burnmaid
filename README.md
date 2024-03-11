@@ -62,7 +62,7 @@ and open http://burnmaid:8080
 
 * Press the remote control button very near to the receiver. Repeat until script prints a result.
 
-* use the result to update these files:
+* use the result to update these files (no restart):
 
             nano burnmaid/data/plug_on.json
             nano burnmaid/data/plug_off.json

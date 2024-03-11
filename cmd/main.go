@@ -17,6 +17,8 @@ import (
 )
 
 const (
+	PORT = "8088"
+
 	hoursToCooldown       = 10
 	timeFormat            = "Mon 2.1, 15:04"
 	updateRateSeconds     = 3 //TODO: also export all defaults to html files

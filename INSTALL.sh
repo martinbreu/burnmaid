@@ -15,6 +15,8 @@ main(){
     download
     install
 
+    journalctl -f -u burnmaid
+
     exit
 }
 
@@ -30,11 +32,12 @@ deps(){
 
 download(){
     version=$(curl -I https://github.com/martinbreu/burnmaid/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
-    curl -L https://github.com/martinbreu/burnmaid/archive/refs/tags/${version}.zip --output ../burnmaid.zip
-    curl -L https://github.com/martinbreu/burnmaid/releases/download/${version}/burnmaid --output ../cmd/burnmaid
-    unzip -o ../burnmaid.zip -d ../
-    rm ../burnmaid.zip
-    sudo rsync --archive --remove-source-files ../burnmaid-* ../
+    
+    curl -L https://github.com/martinbreu/burnmaid/archive/refs/tags/${version}.zip --output ./burnmaid.zip
+    unzip -o ./burnmaid.zip -d ./
+    mv burnmaid-*/* .
+
+    curl -L https://github.com/martinbreu/burnmaid/releases/download/${version}/burnmaid --output ./cmd/burnmaid
 }
 
 install(){

@@ -23,7 +23,7 @@ func (b *Brand) serve() {
 	b.status.indexCache = new(bytes.Buffer) //TODO: load defaults in one place
 	indexTemplate.Execute(b.status.indexCache, nil)
 
-	http.HandleFunc("/running", func(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, b.status.running) })//health, checker.go at page
+	http.HandleFunc("/running", func(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, b.status.running) }) //health, checker.go at page
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		selectedConfig = 0
 		fmt.Fprint(w, b.status.indexCache)
@@ -56,11 +56,11 @@ func (b *Brand) serve() {
 	})
 
 	hostname, _ := os.Hostname()
-	fmt.Println("open http://" + hostname + ":8080")
-	srv := &http.Server{Addr: ":8080"}
+	fmt.Printf("open http://%v:%v\n", hostname, PORT)
+	srv := &http.Server{Addr: fmt.Sprintf(":%v", PORT)}
 	err := srv.ListenAndServe()
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println(err)
 	}
 }
 
