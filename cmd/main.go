@@ -18,7 +18,7 @@ import (
 
 const (
 	ALERT_URL = "http://growmpage:8080/SIM" //TODO: to setings file
-	PORT      = "8088" //TODO: to setings file
+	PORT      = "8080" //TODO: to setings file
 
 	hoursToCooldown       = 10
 	timeFormat            = "Mon 2.1, 15:04"
