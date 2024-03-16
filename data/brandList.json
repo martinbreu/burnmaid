@@ -1,13 +1,25 @@
 [
  {
   "Name": "Glasur",
-  "Start": "Sat Mar 16 08:00:00 CET 2024",
+  "Start": "Fri Mar 15 08:00:00 CET 2024",
   "Phases": [
    {
-    "TemperatureToStart": 20,
+    "TemperatureToStart": 0,
+    "TemperatureToReach": 50,
+    "MinutesToHold": 5,
+    "CelciusPerHour": 60
+   },
+   {
+    "TemperatureToStart": 50,
     "TemperatureToReach": 1100,
     "MinutesToHold": 30,
     "CelciusPerHour": 130
+   },
+   {
+    "TemperatureToStart": 1100,
+    "TemperatureToReach": 400,
+    "MinutesToHold": 0,
+    "CelciusPerHour": 300
    }
   ]
  },
