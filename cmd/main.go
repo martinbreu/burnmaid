@@ -17,7 +17,8 @@ import (
 )
 
 const (
-	PORT = "8088"
+	ALERT_URL = "http://growmpage:8080/SIM" //TODO: to setings file
+	PORT      = "8088" //TODO: to setings file
 
 	hoursToCooldown       = 10
 	timeFormat            = "Mon 2.1, 15:04"
@@ -67,7 +68,7 @@ func main() {
 }
 
 func NewBurnmaid() *Brand {
-	brand := &readBrandListFromFile()[0] //top=first
+	brand := &readBrandListFromFile()[0] //top=first=default TODO: new package/file
 	observer := &sensoric.Observer{}
 	switcher := &sensoric.Switcher{}
 	errorCounterAlert := 0
@@ -80,8 +81,8 @@ func NewBurnmaid() *Brand {
 				brand.updateStatus(observer.MeasureTemperatur())
 				brand.regulate(switcher)
 				if brand.status.errorCounter > errorCounterAlert {
-					http.Get("http://growmpage:8080/SIM")
-					errorCounterAlert = brand.status.errorCounter + (80 / updateRateSeconds) //TODO: magic number everywhere->const
+					http.Get(ALERT_URL)
+					errorCounterAlert = brand.status.errorCounter + (80 / updateRateSeconds) //TODO: magic numbers everywhere
 				}
 				brand.updateIndexCache()
 			}
@@ -126,7 +127,7 @@ func (b *Brand) updateStatus(measured int, measureError error) {
 		b.status.want = phase.shouldTemperature()
 		if math.Abs(float64(b.status.want-b.status.measured)) > 50 {
 			b.status.errorCounter++
-			b.status.error = fmt.Errorf("temperatur difference above 50: %v, Zeit zurück:%v", b.status.want-b.status.measured, (b.status.want-b.status.measured)<0)
+			b.status.error = fmt.Errorf("temperatur difference above 50: %v, Zeit zurück:%v", b.status.want-b.status.measured, (b.status.want-b.status.measured) < 0)
 			fmt.Println(b.status.error.Error())
 			b.status.want = -9999
 		}
@@ -156,7 +157,7 @@ func (brand *Brand) regulate(switcher *sensoric.Switcher) {
 		err = switcher.SwitchOff()
 	}
 	if err != nil {
-		brand.status.errorCounter++ 
+		brand.status.errorCounter++
 		brand.status.error = err
 		fmt.Println(brand.status.error.Error())
 	}

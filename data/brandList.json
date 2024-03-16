@@ -1,16 +1,40 @@
 [
  {
   "Name": "Glasur",
-  "Start": "Mon Mar 11 16:20:00 CET 2024",
+  "Start": "Sat Mar 16 08:00:00 CET 2024",
   "Phases": [
    {
-    "TemperatureToStart": 10,
-    "TemperatureToReach": 1050,
+    "TemperatureToStart": 20,
+    "TemperatureToReach": 1100,
     "MinutesToHold": 30,
     "CelciusPerHour": 130
+   }
+  ]
+ },
+ {
+  "Name": "Schrüh",
+  "Start": "Mon Feb 19 17:30:00 CET 2024",
+  "Phases": [
+   {
+    "TemperatureToStart": 0,
+    "TemperatureToReach": 550,
+    "MinutesToHold": 5,
+    "CelciusPerHour": 150
    },
    {
-    "TemperatureToStart": 1050,
+    "TemperatureToStart": 550,
+    "TemperatureToReach": 650,
+    "MinutesToHold": 10,
+    "CelciusPerHour": 100
+   },
+   {
+    "TemperatureToStart": 650,
+    "TemperatureToReach": 960,
+    "MinutesToHold": 30,
+    "CelciusPerHour": 150
+   },
+   {
+    "TemperatureToStart": 960,
     "TemperatureToReach": 400,
     "MinutesToHold": 0,
     "CelciusPerHour": 200
@@ -104,36 +128,6 @@
     "TemperatureToReach": 50,
     "MinutesToHold": 0,
     "CelciusPerHour": 150
-   }
-  ]
- },
- {
-  "Name": "Schrüh",
-  "Start": "Mon Feb 19 17:30:00 CET 2024",
-  "Phases": [
-   {
-    "TemperatureToStart": 0,
-    "TemperatureToReach": 550,
-    "MinutesToHold": 5,
-    "CelciusPerHour": 150
-   },
-   {
-    "TemperatureToStart": 550,
-    "TemperatureToReach": 650,
-    "MinutesToHold": 10,
-    "CelciusPerHour": 100
-   },
-   {
-    "TemperatureToStart": 650,
-    "TemperatureToReach": 960,
-    "MinutesToHold": 30,
-    "CelciusPerHour": 150
-   },
-   {
-    "TemperatureToStart": 960,
-    "TemperatureToReach": 300,
-    "MinutesToHold": 0,
-    "CelciusPerHour": 200
    }
   ]
  },
