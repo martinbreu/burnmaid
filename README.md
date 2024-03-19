@@ -115,7 +115,7 @@ scp -rp html/* pi@burnmaid:/home/pi/burnmaid/cmd/html/
 
 ssh pi@burnmaid
 echo > burnmaid/data/burnmaid.log
-sudo journalctl --since "2024-02-24" --unit burnmaid.service
+sudo journalctl --since "2024-03-15" --unit burnmaid.service
 
 cd burnmaid/
 scp external/* pi@burnmaid:/home/pi/burnmaid/external/
