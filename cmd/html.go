@@ -35,7 +35,7 @@ func (b *Brand) serve() {
 	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) { http.ServeFile(w, r, "./html/favicon.ico") })
 	http.HandleFunc("/plot", b.plot)
 	http.HandleFunc("/plot.png", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Cache-Control", "max-age=60, public")
+		w.Header().Set("Cache-Control", "max-age=2, public")
 		os.Remove("./plot.png")
 		plotLayout := "2006/01/02 15:04:05" //TODO: filewatcher ore whatever instead because loads two times if zoomed
 		exec.Command(FILE_plot, plotFrom.Format(plotLayout), plotTo.Format(plotLayout)).Run()
