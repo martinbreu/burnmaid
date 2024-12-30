@@ -1,6 +1,10 @@
 New simple, cheap Burncontroller:
 
-Raspberry Pi Pico W (Access Point ohne Passwort mit Captive Portal)
+Aktuellen Ofen anders wickeln, zb. so: https://www.kleinanzeigen.de/s-anzeige/brennofen-fuer-bastler/2919864828-282-9244
+Oder freihängende wie in meisten toploadern
+
+Raspberry Pi Pico W (Access Point ohne Passwort mit Captive Portal) 
+try at first with MicroPython
 Einfache Website, erstmal mit Stift und Papier vorzeichnen, von anderen Ofensteuerungen inspirieren lassen, ChatGPT fragen!
 (aktuelle Temperatur/Solltemperatur, Endzeit, bissl Text mit Schrüh=960 und Glasur=1250 und kurze Anleitung Ton bis fertige Tasse)
 Eingabe(maximale Temperatur bis 1250, Startzeit, sofortiger Stop/Start)
@@ -9,22 +13,43 @@ standard Brennkurve mit automatischen Einstieg bei aktueller Temperatur, plus bo
 Nur abbruch bei 3 minuten durchgängig bekannten Messfehler wie nicht verbunden.
 
 Link zu günstigem Brennofen mit minimalistischen Zubehör für Tasse (Ton, Glasur für Geschirr)
-Alles auf dreier Steckdose mit Panzertape
+Alles auf dreier Steckdose mit Panzertape, auf board löten, evtl. welche kaufen
 
 Auf Etsy+Ebay Kleinanzeigen verkaufen, nicht Github
 
 
-
 #Hardware:
+
+Günstiger als adafruit wegen versand und zoll:
+https://www.roboter-bausatz.de
+https://www.reichelt.de (MAX31855, pico)
+
 
 Pico W: https://www.adafruit.com/product/5526
 Konverter: https://www.adafruit.com/product/269
-Messfühler: https://www.amazon.de/dp/B0BSC1STZV/?coliid=I1B7OO64FFBF0X&colid=2LYV8PYIBVR7S&psc=1&ref_=cm_sw_r_cp_ud_lstpd_VNYYSENYQJAT8KG7MXGX
+Messfühler: https://amzn.eu/d/iFODov4
 
 Andere Messfühler:
+ca. 25€, konfigurierbar, vermutlich sehr gute Qualität: https://www.testo-sensor.shop/en/sheathed-thermocouple-type-k-with-tc-connector
+aktuell, 15€: https://amzn.eu/d/bNoihKq
 30€, bessere quali vermutlich: https://www.verpackungsgerate.de/detail/messgerate/zubehor-fur-thermometer/thermoelement-typ-k-fur-hochtemperaturmessung-0-bis-1300-c-lange-300mm.html?utm_source=chatgpt.com
-8€, gleicher, testen: https://www.amazon.de/dp/B0DJQT3Y9V/ref=sspa_dk_detail_0?psc=1&pd_rd_w=PieWg&content-id=amzn1.sym.8e111585-a10f-40a4-b92c-c1e3c49654ce&pf_rd_p=8e111585-a10f-40a4-b92c-c1e3c49654ce&pf_rd_r=KV8JGRT8Q3CN9RDZEBK5&pd_rd_wg=JLZZg&pd_rd_r=7e1819e9-7450-44c5-81c7-a73bd19d1b1b&s=industrial&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy
+8€, gleicher, testen: 
 komischer: https://www.amazon.de/dp/B07XF17CS3/ref=sspa_dk_detail_3?psc=1&pd_rd_i=B07XF17CS3&pd_rd_w=UDxWs&content-id=amzn1.sym.6ffc9ff7-fa31-49da-8594-196e74bcf61e&pf_rd_p=6ffc9ff7-fa31-49da-8594-196e74bcf61e&pf_rd_r=0DWV6S5M5T5AVP2YJ7R9&pd_rd_wg=8xLBN&pd_rd_r=cc66bc52-fed3-4ed7-bbd7-2d7a50ea60a2&s=lighting&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw
 
-Steckdose mit Kabel(siehe Linux firefox)
-XXXXXXXXXXXXXXXXXX
+Netzteil: https://amzn.eu/d/3SkQZpU
+Relais: https://amzn.eu/d/c3sy8OK
+
+Steckdose mit Kabel, vorher selber Relais löten testen
+https://www.roboter-bausatz.de/p/olimex-schaltsteckdose-230v-16a-fuer-arduino-esp32-und-raspberry-pi-pwr-switch?srsltid=AfmBOoqnMDi0nyoF3FxKP2hvq6GsOwgqU3gw2YkVAi5jhVXUKuhym1EW
+
+Funksteckdose von Brennstuhl mit ca. 6 pro Stück am günstigsten, noch günstiger vermutlich selber Relais löten
+
+Öfen:
+siehe Windows copyq?
+
+gebraucht:
+https://www.kleinanzeigen.de/s-anzeige/brennofen-von/2882863539-282-13512
+https://www.kleinanzeigen.de/s-anzeige/emalie-ofen-brennofen-efco-135-mit-zubehoer/2930988695-282-2935
+https://www.kleinanzeigen.de/s-anzeige/brennofen-voll-funktionsfaehig/2928592522-282-14101
+https://www.kleinanzeigen.de/s-anzeige/naber-l51-s-schmelzofen-brennofen-8-toepferbuecher/2943726098-282-56
+
