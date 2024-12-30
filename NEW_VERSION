@@ -64,3 +64,201 @@ https://www.kleinanzeigen.de/s-anzeige/emalie-ofen-brennofen-efco-135-mit-zubeho
 https://www.kleinanzeigen.de/s-anzeige/brennofen-voll-funktionsfaehig/2928592522-282-14101
 https://www.kleinanzeigen.de/s-anzeige/naber-l51-s-schmelzofen-brennofen-8-toepferbuecher/2943726098-282-56
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keramik Brennofen Steuerung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .info {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .info span {
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brennofen Steuerung</h1>
+
+        <div class="info">
+            <p>Aktuelle Temperatur: <span id="current-temp">--</span> °C</p>
+            <p>Geplante Startzeit: <span id="start-time">--:--</span></p>
+            <p>Geplante Endzeit: <span id="end-time">--:--</span></p>
+        </div>
+
+        <label for="max-temp">Maximale Temperatur (°C):</label>
+        <input type="number" id="max-temp" placeholder="z. B. 1200">
+
+        <label for="start-date-time">Startzeit (Datum und Uhrzeit):</label>
+        <input type="datetime-local" id="start-date-time">
+
+        <button id="start-btn">Start</button>
+        <button id="stop-btn" disabled>Stop</button>
+    </div>
+
+    <script>
+        // Elemente referenzieren
+        const currentTempEl = document.getElementById('current-temp');
+        const startTimeEl = document.getElementById('start-time');
+        const endTimeEl = document.getElementById('end-time');
+        const maxTempInput = document.getElementById('max-temp');
+        const startDateTimeInput = document.getElementById('start-date-time');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+
+        // Daten aktualisieren (Simulation von Daten vom Pico W)
+        function updateTemperature(temp) {
+            currentTempEl.textContent = temp.toFixed(1);
+        }
+
+        function updateStartTime(startTime) {
+            startTimeEl.textContent = startTime;
+        }
+
+        function updateEndTime(endTime) {
+            endTimeEl.textContent = endTime;
+        }
+
+        // Start-Button Logik
+        startBtn.addEventListener('click', () => {
+            const maxTemp = maxTempInput.value;
+            const startDateTime = startDateTimeInput.value;
+
+            if (!maxTemp || maxTemp <= 0) {
+                alert('Bitte geben Sie eine gültige maximale Temperatur ein.');
+                return;
+            }
+
+            if (!startDateTime) {
+                alert('Bitte geben Sie eine gültige Startzeit ein.');
+                return;
+            }
+
+            // Daten an den Pico W senden
+            fetch('/start', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    maxTemp: parseFloat(maxTemp),
+                    startDateTime: startDateTime
+                })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Brennofen gestartet!');
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    maxTempInput.disabled = true;
+                    startDateTimeInput.disabled = true;
+
+                    // Geplante Zeiten aktualisieren
+                    updateStartTime(new Date(startDateTime).toLocaleString());
+                    const endTime = new Date(new Date(startDateTime).getTime() + 4 * 60 * 60 * 1000); // Beispiel: +4 Stunden
+                    updateEndTime(endTime.toLocaleString());
+                } else {
+                    alert('Fehler beim Starten des Brennofens.');
+                }
+            });
+        });
+
+        // Stop-Button Logik
+        stopBtn.addEventListener('click', () => {
+            fetch('/stop', { method: 'POST' }).then(response => {
+                if (response.ok) {
+                    alert('Brennofen gestoppt!');
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+                    maxTempInput.disabled = false;
+                    startDateTimeInput.disabled = false;
+                } else {
+                    alert('Fehler beim Stoppen des Brennofens.');
+                }
+            });
+        });
+
+        // Test-Daten aktualisieren (in der Praxis vom Pico W erhalten)
+        setInterval(() => {
+            const simulatedTemp = Math.random() * 1300; // Simulierte Temperatur
+            updateTemperature(simulatedTemp);
+        }, 2000);
+    </script>
+</body>
+</html>
+
