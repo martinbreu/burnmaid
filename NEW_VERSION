@@ -5,8 +5,8 @@ Oder freihängende wie in meisten toploadern
 
 Raspberry Pi Pico W (Access Point ohne Passwort mit Captive Portal) 
 try at first with MicroPython
-Einfache Website, erstmal mit Stift und Papier vorzeichnen, von anderen Ofensteuerungen inspirieren lassen, ChatGPT fragen!
-(aktuelle Temperatur/Solltemperatur, Endzeit, bissl Text mit Schrüh=960 und Glasur=1250 und kurze Anleitung Ton bis fertige Tasse)
+Einfache Website, erstmal mit Stift und Papier vorzeichnen, von anderen Ofensteuerungen inspirieren lassen, ChatGPT fragen! Für alle extras eine Experten-Seite erstellen, wirklich erstmal nur das einfachste
+(aktuelle Temperatur/Solltemperatur, Endzeit, bissl Text mit Schrüh=960 und Glasur=1250 und kurze Anleitung Ton bis fertige Tasse, evtl. ganz unten temperaturlog alle 5 minuten einfach mit uhrzeit für aktuellen brand)
 Eingabe(maximale Temperatur bis 1250, Startzeit, sofortiger Stop/Start)
 
 standard Brennkurve mit automatischen Einstieg bei aktueller Temperatur, plus boost-option(so schnell wie möglich)
@@ -16,6 +16,11 @@ Link zu günstigem Brennofen mit minimalistischen Zubehör für Tasse (Ton, Glas
 Alles auf dreier Steckdose mit Panzertape, auf board löten, evtl. welche kaufen
 
 Auf Etsy+Ebay Kleinanzeigen verkaufen, nicht Github
+
+Eventuell auf Typ S umsteigen, vermutlich verwenden die meisten Öfen diesn Typ:
+https://amzn.eu/d/ixFS92q
+https://www.keramik-kraft.com/de/Ofenbau--Reparatur/Temperaturmessung/Thermoelemente-Platin-Typ-S/Thermoelement-Typ-S-mit-Kopf-l-12cm-.html?sel=1
+https://www.berrybase.de/adafruit-universal-thermocouple-verstaerker-max31856-breakout
 
 
 #Hardware:
@@ -34,7 +39,7 @@ ca. 25€, konfigurierbar, vermutlich sehr gute Qualität: https://www.testo-sen
 aktuell, 15€: https://amzn.eu/d/bNoihKq
 30€, bessere quali vermutlich: https://www.verpackungsgerate.de/detail/messgerate/zubehor-fur-thermometer/thermoelement-typ-k-fur-hochtemperaturmessung-0-bis-1300-c-lange-300mm.html?utm_source=chatgpt.com
 8€, gleicher, testen: 
-komischer: https://www.amazon.de/dp/B07XF17CS3/ref=sspa_dk_detail_3?psc=1&pd_rd_i=B07XF17CS3&pd_rd_w=UDxWs&content-id=amzn1.sym.6ffc9ff7-fa31-49da-8594-196e74bcf61e&pf_rd_p=6ffc9ff7-fa31-49da-8594-196e74bcf61e&pf_rd_r=0DWV6S5M5T5AVP2YJ7R9&pd_rd_wg=8xLBN&pd_rd_r=cc66bc52-fed3-4ed7-bbd7-2d7a50ea60a2&s=lighting&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw
+Typ S: https://amzn.eu/d/7TqoLiH
 
 Netzteil: https://amzn.eu/d/3SkQZpU
 Relais: https://amzn.eu/d/c3sy8OK
@@ -45,7 +50,12 @@ https://www.roboter-bausatz.de/p/olimex-schaltsteckdose-230v-16a-fuer-arduino-es
 Funksteckdose von Brennstuhl mit ca. 6 pro Stück am günstigsten, noch günstiger vermutlich selber Relais löten
 
 Öfen:
-siehe Windows copyq?
+Kittec Toplader CB 20 
+(1800€, 33*23, mit Thermometer aber ohne steuerung) https://www.keramik-toepfern.de/p/kittec-cb-20-mit-tc-66-keramik-brennofen-abholung-beim-haendler-ohne-brennset
+(2150€) https://www.toepferbedarf-brock.de/Kittec-Toplader-CB-20
+(1900€, optional ohne Steuerung möglich preis unbekannt) https://www.keramik-brennofenshop.de/49131/toplader_cb_20_ausstattung_cb_20_incl_tc_66
+
+(1900€, 12 Liter, quadratisch: 23*23*23) https://www.toepferbedarf-brock.de/Toplader-Profitherm-PY-12-H
 
 gebraucht:
 https://www.kleinanzeigen.de/s-anzeige/brennofen-von/2882863539-282-13512
